@@ -1,0 +1,21 @@
+1. Vue 동적 스타일링
+=> v:bind:style="{}"/ 객체를 정의할 수 있습니다. 이 떄 CSS는 React의 inLine Style을 정의하는 것처럼
+카멜케이스 {backgroundColor : box ? 'red' : '#ccc'} 이렇게 정의할 수 있습니다.
+
+
+2. :class를 사용해서 Vue가 제어하는 클래스 속성을 만들 수 있습니다.
+=> v-bind:class=""/ 문자열 내부에서 JS 표현식을 사용할 수 있습니다.
+=> :class 또한 문자열 내부에서 중괄호를 사용해서 객체처럼 class를 정의할 수 있습니다.
+
+=> :v-bind:class='{demo : true, active : boxASelected}'
+=> key는 class이고 value의 boolean에 따라 css가 적용되거나 적용되지 않는 객체 정의를 
+만들 수 있습니다.
+
+
+2. computed를 사용해서 동적 스타일링
+=> computed는 의존성의 변화를 파악해서 함수를 실행하고 값을 return하는 메서드입니다.
+=> computed에서 객체 형식으로 return {class : boolean} 정의하고 return한다면 HTML 코드를
+Clean하게 만들 수 있습니다.
+
+
+3. 
