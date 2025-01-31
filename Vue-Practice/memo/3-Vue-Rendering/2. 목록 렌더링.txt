@@ -1,0 +1,27 @@
+1. v-for
+=> 동적 렌더링을 도와주는 디렉티브입니다.
+=> <li v-for="goal in goals">{{goal}}<li/>
+=> <li> 태그 + 컨텐츠가 goal in goals 만큼 동적으로 렌더링됩니다.
+
+
+2. v-for (arr, object)
+2-1. <li v-for="(goal, idx) in arr">{{goal}} - {{idx}}</li>
+=> arr 값과 idx를 표현할 수 있습니다.
+
+2-2. <li v-for="(value, key, idx) in {name : 'HWT', age : 28}">{{value}}-{{key}}-{{idx}}</li>
+=> object의 value, key, idx를 표현할 수 있습니다.
+
+** v-for은 배열과 객체 모두 표현할 수 있고 in을 사용해서 loop을 돌려서 표현합니다.
+
+
+3. 동적 렌더링 요소 삭제하기
+=> 삭제할 요소의 idx를 받아서 methods 인자에 넣어서 로직을 처리하면 됩니다.
+=> 이 떄 v-for로 정의한 idx, value는 v-on=""에서 사용할 수 있습니다.
+=> @click="()=>removeGoal(idx)"
+
+
+4. 목록 및 키
+4-1. Vue는 요소를 재사용합니다.
+4-2. 동적 렌더링 요소들은 고유한 식별 기준이 없습니다.
+4-3. v-for과 함께 key 요소를 사용하면 고유 식별자를 부여할 수 있습니다.
+4-4. v-bind:key="goal"
