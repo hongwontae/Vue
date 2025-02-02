@@ -1,0 +1,35 @@
+1. data 함수의 return 되는 객체들을 프록시를 통해 래핑하여 추적합니다.
+=> Vue는 이를 통해 변경되는 사항을 알고 이를 반영합니다.
+
+
+2. proxy
+=> 객체의 동작을 가로채서 커스텀 로직을 적용할 수 있도록 해줍니다.
+=> 객체의 get, set 같은 작업을 감지하고 특정 로직을 실행할 수 있습니다.
+=> get으로 의존성을 추적하고 set으로 UI 업데이트를 수행합니다.
+
+2-1. new Proxy(object, handler)
+
+1. object : 일반 객체
+2. handler : 이를 통해 get, set 구현
+
+=> const handler = {
+    get(obj, prop){
+
+    },
+    set(obj, prop, value){
+        ...
+        return true // 반드시 true을 반환해야 성공합니다.
+    }
+}
+=> obj는 proxy가 감싸고 있는 원본 객체
+=> prop은 접근하거나 변경하려는 속성 이름
+=> value는 set에서만 존재하는 새로 설정하려는 값입니다.
+=> Vue2에서는 Object.defineProperty로 구현했습니다.
+=> 배열 변경 감지가 어렵고 새로운 속성 추가 감지가 불가했습니다.
+=> defineProperty는 주소 값의 변경으로 set이 감지되기 때문입니다.
+=> new Proxy()는 일반 값 변경에도 set이 감지됩니다.
+
+
+** 일반 객체에서 get, set은 / get 정의한 속성이름(), set 정의한 속성이름(value){} 이렇게 정의해야 합니다. **
+
+
