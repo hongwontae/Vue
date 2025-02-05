@@ -1,0 +1,25 @@
+1. Vue 서버를 사용해야 하는 이유
+=> 코드 변경 후 새로고침을 안해도 적용됩니다.
+=> IDE의 도움으로 객체의 속성과 메서드의 접근을 손쉽게 할 수 있습니다.
+=> 파일 구조를 더 명확하게 잡거나 분할할 떄 효율적입니다.
+
+
+2. Vue CLI 설치방법
+2-1. npm install -g @vue/cli
+2-2. vue create vue-folder-name
+
+
+3. 내부 폴더와 파일
+3-1. node_modules
+3-2. paakage.json
+3-3. public/index.html => Vue의 기본 동작은 SPA이며 <div id='app'></div>이 root입니다.
+3-4. src/.. => src 내부 파일은 JS 코드가 들어갑니다.
+3-5. src/ main.js => 메인 진입점입니다. 해당 파일은 import를 통해 createApp을 가져와서 
+createApp(App).mount('#app') 를 통해 초기화합니다. #app은 index.html의 div 루트
+3-6. App.vue => .vue에서는 template, Script, Style를 정의할 수 있습니다.
+
+
+4. Vue Workflow
+=> Vue cli는 빌드 워크플로우를 사용합니다.
+=> 작성 코드가 브러우저에서 바로 실행되지 않습니다. => Vue의 작성 코드는 CLI에 의해서 브라우저에서 작동하는
+코드로 변경됩니다.
