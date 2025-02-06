@@ -3,10 +3,11 @@
     <header>
       <h1>My Friends</h1>
     </header>
+    <new-friend @add-contact="submitData"></new-friend>
     <ul>
-      <friend-contact v-for="friend in friends" v-bind:key="friend.id" v-bind:name="friend.name"
-        v-bind:phone-number="friend.phone" v-bind:email-address="friend.email"
-        v-bind:toggle-number="true"></friend-contact>
+      <friend-contact v-for="friend in friends" v-bind:key="friend.id" v-bind:id="friend.id" v-bind:name="friend.name"
+        v-bind:phone-number="friend.phone" v-bind:email-address="friend.email" v-bind:toggle-number="friend.toggle"
+        @cutom-toggle="toggleFavoriteStatus" @delete-contact="deleteData"></friend-contact>
     </ul>
   </section>
 </template>
@@ -21,16 +22,44 @@ export default {
           name: "Manuel Lorenz",
           phone: "0123 45678 90",
           email: "manuel@localhost.com",
+          toggle: true
         },
         {
           id: "julie",
           name: "Julie Jones",
           phone: "0987 654421 21",
           email: "julie@localhost.com",
+          toggle: true
         },
       ],
     };
   },
+  methods: {
+    toggleFavoriteStatus(id) {
+      console.log('자식 => 부모 컴포넌트 역방향 통신', id)
+      const targetFriend = this.friends.find(ele => {
+        return ele.id == id
+      })
+      console.log(targetFriend)
+      targetFriend.toggle = !targetFriend.toggle
+    },
+    submitData(name, phone, email){
+      const newFriend = {
+        id : new Date().toISOString(),
+        name,
+        phone,
+        email,
+        toggle : false
+      }
+      this.friends.push(newFriend)
+    },
+    deleteData(id){
+      const filteredFriends = this.friends.filter(ele=>{
+        return ele.id != id
+      })
+      this.friends = filteredFriends
+    }
+  }
 };
 </script>
 
@@ -65,7 +94,8 @@ header {
   list-style: none;
 }
 
-#app li {
+#app li,
+#app form {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   margin: 1rem auto;
   border-radius: 10px;

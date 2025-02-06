@@ -7,6 +7,7 @@
 *.ico
 *robots.txt
 *.jpeg
+*.pdf
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/vuejs
