@@ -1,0 +1,36 @@
+1. 부모 => 자식 통신
+1-1. 부모 컴포넌트에서 자식 component을 사용합니다.
+1-2. 이 떄 자식 컴포넌트에 props로 데이터를 전달합니다.
+1-3. 자식 컴포넌트에서 부모 컴포넌트로 내려온 props를 script 설정 객체의 props : []로 받을 수 있습니다.
+1-4. 자식 컴포넌트에서 props는 읽기 전용입니다.
+1-5. 부모 컴포넌트에서 props을 변경하면 자식 컴포넌트 props도 변경됩니다.
+
+1-6. 부모 컴포넌트에서는 props를 kebab-case로 전달합니다.
+1-7. 자식 컴포넌트에서는 props의 이름을 camelCase로 변환합니다.
+=> 즉, vue는 HTML 속성을 자동으로 camelCase로 매핑합니다.
+
+
+2. 부모의 props를 자식 컴포넌트에서 변경하는 방법
+=> props를 data의 초기값으로 사용하여 변경할 수 있습니다.
+=> 이 떄 해당 data는 부모의 props와 무관합니다.
+
+
+3. props는 배열이나 객체를 값으로 받습니다.
+3-1. 배열을 값으로 받으면 배열 안에 camelCase로 props를 채워넣으면 됩니다.
+
+3-2. 객체라면 키는 camelCase, 값은 타입을 정의합니다.
+=> camelCase : String
+=> 더 나아가서 camelCase : {}를 정의할 수 있습니다.
+=> phoneNumber : {
+    type : String,
+    required : true or false,
+    default : '0' or function(){},
+    validator : fumction(value){} => 유효성 검사를 할 수 있습니다.
+}
+
+3-3. 지원되는 type 값
+=> String, Number, Boolean, Array, Object, Date, Function, Symbol..
+
+
+4. props에 JS 표현식
+=> v:bind, : 를 사용해서 값에 JS 표현식을 사용할 수 있습니다.
