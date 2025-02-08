@@ -27,7 +27,7 @@
 4. methods option
 => 값으로 객체를 받고 객체 내부에서는 함수를 정의합니다.
 => 정의한 함수를 연결된 HTML에서 호출할 수 있습니다.
-=> 컨텐츠에서 {{randomFunc()}}하면 return 되는 값이 HTML 컨텐츠에 반영됩니다.
+=> 템플릿에서 {{randomFunc()}}하면 return 되는 값이 HTML 컨텐츠에 반영됩니다.
 => 함수내에서 this를 사용하면 data value에 접근할 수 있습니다. (data props이 Vue 인스턴스 객체라서)
 
 

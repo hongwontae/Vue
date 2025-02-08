@@ -16,7 +16,7 @@
 3-4. src/.. => src 내부 파일은 JS 코드가 들어갑니다.
 3-5. src/ main.js => 메인 진입점입니다. 해당 파일은 import를 통해 createApp을 가져와서 
 createApp(App).mount('#app') 를 통해 초기화합니다. #app은 index.html의 div 루트
-3-6. App.vue => .vue에서는 template, Script, Style를 정의할 수 있습니다.
+3-6. App.vue => .vue에서는 template, script, style를 정의할 수 있습니다.
 
 
 4. Vue Workflow

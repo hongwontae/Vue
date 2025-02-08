@@ -5,7 +5,7 @@
 1-4. 자식 컴포넌트에서 props는 읽기 전용입니다.
 1-5. 부모 컴포넌트에서 props을 변경하면 자식 컴포넌트 props도 변경됩니다.
 
-1-6. 부모 컴포넌트에서는 props를 kebab-case로 전달합니다.
+1-6. 부모 컴포넌트에서는 props 속성을 kebab-case로, 값은 카멜 케이스로 전달합니다.
 1-7. 자식 컴포넌트에서는 props의 이름을 camelCase로 변환합니다.
 => 즉, vue는 HTML 속성을 자동으로 camelCase로 매핑합니다.
 
