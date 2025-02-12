@@ -1,0 +1,30 @@
+1. form의 데이터를 취합하는 것은 v-model을 통해 양방향 바인딩을 설계하는 것이 효율적입니다.
+
+
+2. input 태그의 type이 number이고 v-model이 양방향 바인딩을 이루고 있다면
+v-model에 의해 전달되는 값은 number 타입이 됩니다.
+
+
+3. v-model에 dot으로 접근하여 설정을 사용할 수 있습니다.
+=> v-model.number (숫자로 받습니다.)/ v-model.trim (공백을 제거합니다.)
+
+
+4. select + option 바인딩
+=> select 태그에 v-model을 설정하면 자동으로 option과 양방향 바인딩이 설정됩니다.
+
+
+5. check-box 바인딩
+5-1. 부모 안에 input의 type='checkbox'라면 data의 초기값을 []로 설정합니다.
+=> 자식 input tag의 v-model을 설정하고 value의 고유의 값을 넣어주면
+=> DOM에서 체크한 박스의 값이 배열에 추가됩니다.
+
+5-2. 부모 안의 input 테그의 type='radio'라면 초기값을 null로 설정합니다.
+=> 자식 input tag v-model 설정, value 고유값 설정
+=> 하나만 선택할 수 있는 radio의 값이 data에 추가됩니다.
+
+5-3. 만약 체크박스 input이 하나라면 해당 값은 true/false로 동작합니다.
+
+
+6. 커스텀 컴포넌트와 v-model
+=> 커스텀 컴포넌트에 v-model을 설정하면 자동으로 커스텀 컴포넌트는 props로 data(modelValue)를 받습니다.
+=> 커스텀 컴포넌트에 emit [update:modelValue]를 설정하면 v-model과 자동으로 연결됩니다.
