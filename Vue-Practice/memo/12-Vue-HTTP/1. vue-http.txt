@@ -1,0 +1,8 @@
+1. methods를 통해 http를 처리합니다.
+
+2. await-async를 통해 success, loading, error 상태를 조작합니다.
+=> 즉, data props에 result, loading, error를 초기화하고 fetch의 상태에 따라 true와 false를 주면서
+동적으로 html을 보여줍니다.
+
+3. mounted 같은 메서드를 통해 생명주기에 맞춰서 렌더링할 수 있습니다.
+
