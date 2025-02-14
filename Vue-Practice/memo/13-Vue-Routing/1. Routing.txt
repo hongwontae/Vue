@@ -1,0 +1,37 @@
+1. vue-router install
+=> npm install vue-router@4
+
+
+2. 설정 방법
+2-1. createRouter({})
+2-2. 객체 안에는 history, routes를 설정할 수 있습니다.
+2-3. history : createWebHistory(){ // 해당 함수를 호출하여 브라우저 history를 사용할 수 있습니다.
+}
+2-4. routes
+=> 어떤 url에 어떤 컴포넌트가 매칭될지 설정하는 key입니다.
+=> routes는 배열을 값으로 받고 배열은 객체를 값으로 받아서 정의합니다.
+=> [
+    {path : '/terms', component : TermsList},
+    {path : '/users', component : UsersList}
+]
+2-5. vue 설정 객체을 할당받은 변수의 메서드인 use는 서드 파티 패키지와 연결하는 역할을합니다.
+=> app.use(router)를 통해 연결할 수 있습니다.
+
+
+3. <router-view/>
+=> 컴포넌트 template에서 해당 태그를 사용하면 설정했던 URL에 알맞는 컴포넌트가 렌더링되도록 합니다.
+=> React에서 사용하는 Outlet 컴포넌트와 유사합니다.
+
+
+4. <router-link/>
+=> a 역할과 유사하지만 다른 페이지 로드를 막고 vue-router에 의한 움직임을 합니다.
+=> to props를 사용하여 url을 전달해주면 됩니다.
+=> 해당 태그는 to와 url이 일치하면 router-link-active라는 class를 갖게 됩니다.
+=> router-link-exact-active는 현재 경로와 완전히 일치해야 갖게되는 class이고
+router-link-active는 자식 url을 갖고 있어도 활성화되는 class입니다.
+
+=> vue 설정 객체에서 linkActiveClass에 새로운 값을 넣어서 router-link의 갖게되는 class 이름을 변경할
+수 있습니다.
+
+
+

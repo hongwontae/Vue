@@ -1,0 +1,15 @@
+1. 리다이렉션 및 Catch-All 라우트
+=> route 설정 객체에서 path를 설정하고 redirect를 설정하면 path에 접속했을 떄
+=> redirect path로 이동합니다.
+=> {path : '/', redirect : '/teams'}
+
+=> alias
+=> {path : '/teams',component : TeamComponent, alias : '/'}
+=> TeamComponent는 /이나 /teams에 URL로 접속할 수 있습니다.
+=> redirect와 다른 점은 TeamComponent에 /로 들어가면 /teams로 url이 변경되지 않습니다.
+
+=> cath-all route
+=> 정의한 라우트들이 처리하지 못한 URL을 전부 처리하는 라우트입니다.
+=> 가장 밑에서 정의하는게 좋습니다.
+=> '/:notFound(.*)'
+=> 정의하지 않은 url로 접속하면 catch-all router가 반응하여 해당 컴포넌트를 보여줍니다.
