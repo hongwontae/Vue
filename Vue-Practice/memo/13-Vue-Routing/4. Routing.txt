@@ -1,0 +1,52 @@
+1. router-view mutiple
+=> 라우트 설정 객체에서 component 대신 components키를 사용합니다.
+=> components는 객체를 값으로 받고 key-value를 설정합니다.
+=> components에 default : component를 설정하면 이름을 할당받지 않은 router-view에 바인딩됩니다.
+=> key가 설정되면 router-view에 key를 주어서 식별 가능하게 합니다.
+
+=> 이렇게 설정하면 URL이 변경될 떄 default 영역만 url에 할당한 컴포넌트로 대체됩니다.
+
+
+2. 스크롤 제어하기
+=> 라우터 전역 설정 객체에서 scrollBebavior를 통해 제어할 수 있습니다.
+=> 해당 메서드는 페이지가 바뀌었을 떄 이동할 브라우저 스크롤 위치를 나타내는 객체를 반환합니다.
+=> 반환 객체는 left와 top입니다.
+=> scrollBebavior(to, from, savedPosition){
+    to는 이동할 페이지에 대한 $route,
+    from은 이동 전 페이지에 대한 $route입니다.
+    savedPosition은 뒤로 가기 버튼을 눌렀을 떄 전 상황의 스크롤 위치를 저장합니다.
+}
+
+
+3. 내비게이션 가드
+=> router.beforEach(()=>{})를 통해 페이지에서 다른 페이지로 넘어갈 떄
+실행할 수 있는 함수입니다.
+
+=> to, from, next를 매개변수로 받습니다. next는 내비게이션 동작을 승인하거나 취소하기 위해
+호출하는 함수입니다.
+=> next()를 호출하면 페이지 이동을 승인하는 것입니다.
+=> next(false)를 호출하면 페이지 이동을 거부하는 것입니다.
+=> next의 인자로 문자열이나 객체를 받을 수 있습니다.
+=> next('terms') or next({name : 'terms', params : {teamId :'t2'} })
+
+=> 인증할 떄 많이 사용합니다.
+
+3-1. beforeRouteEnter(){}
+=> Vue Page 설정 객체에서 사용할 수 있는 메서드입니다.
+=> 해당 메서드가 먼저 호출된 뒤 다른 페이지 이동이 승인됩니다.
+
+3-2. beforeEnter(){}
+=> route path 설정에서 사용할 수 있는 내비게이션 가드입니다.
+=> 해당 페이지 자체에서만 국한된 가드입니다.
+
+3-3. beforeRouteUpdate(){}
+=> 재사용 컴포넌트를 사용할 떄마다 실행되는 내비게이션 가드입니다.
+
+3-3. 항상 전역 가드가 먼저 실행되고 라우트 가드, 컴포넌트 가드 순서대로 실행됩니다.
+
+
+4. router.afterEach((to, from)=>{
+    => 서버에 분석 데이터를 보내는데에 유용합니다.
+    => 이동이 승인된 뒤에 실행되는 전역 메서드입니다.
+})
+
