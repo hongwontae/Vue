@@ -1,5 +1,6 @@
 <template>
   <ul>
+    <button v-on:click="validHandler">Save!</button>
     <user-item v-for="user in users" :key="user.id" :name="user.fullName" :role="user.role"></user-item>
   </ul>
 </template>
@@ -12,6 +13,26 @@ export default {
     UserItem,
   },
   inject: ['users'],
+  data(){
+    return {
+      isValid : false
+    }
+  },
+  methods : {
+    validHandler(){
+      console.log('validHanlder')
+      this.isValid = true
+    }
+  },
+  beforeRouteLeave(to, from, next){
+    console.log(to, from, next);
+    if(this.isValid){
+      next()
+    } else {
+      const questionValid = confirm('are you close?');
+      next(questionValid);
+    }
+  }
 };
 </script>
 
