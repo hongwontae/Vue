@@ -1,0 +1,34 @@
+1. transition :css
+=> v-bind:css="false"를 통해 해당 트랜지션 컴포넌트는 CSS 애니메이션이 아닌
+ JS 애니메이션으로 애니메이션을 진행하겠다고 알릴 수 있습니다.
+=> 해당 트랜지션 컴포넌트는 CSS 구문을 확인하지 않습니다.
+
+
+2. <transition-group></transition-group>
+=> 여러 요소에 동시에 애니메이션을 적용할 수 있습니다.
+=> transition-group은 자동으로 span이라는 태그가 됩니다.
+=> 이를 방지하기 위해서 tag props를 통해 ul, div, header 값을 넣어서 해당 태그로 바꿀 수 있습니다.
+=> name props를 통해 custom css 식별자를 넣을 수 있습니다.
+=> Vue는 자동으로 추가, 삭제되지 않은 요소를 새로운 위치로 이동시킬 때 내부적으로 transform을 사용합니다.
+
+=> .v-move {}
+=> 추가 또는 삭제되지 않은 다른 요소들이 가지는 클래스입니다.
+=> {
+    transition : transfofm
+    // transform을 이미 사용 => 자동으로 추가, 삭제 안된 요소 transform으로 옮겨서
+}
+
+
+3. router 전환 시 애니메이션
+=> <router-view v-slot="slotProps"> 
+        <transition name="route" mode="out-in">
+            <component :is="slotProps.Component"></component>
+        </transition>
+    </router-view>
+=> 이 구문으로 작성해야 라우트 간 애니메이션이 동작합니다.
+
+=> 처음 페이지에 진입 시 애니메이션이 실행되는데 이를 막기 위해서는
+=> 설정 객체
+=> router.isReady().then(()=>{
+    router.mount('#app')
+})으로 초기화하면 됩니다.

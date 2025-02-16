@@ -1,0 +1,33 @@
+1. transition Custom className
+=> 한 컴포넌트에 여러 개의 transition 컴포넌트가 존재할 수 있습니다.
+=> 이 떄 각 transition에 정의된 클래스를 구분하기 위해 custom-className을 구현할 수 있습니다.
+
+=> <transition name="para"/>
+=> .para-enter-from {}, .para.enter-active{}...
+
+=> <transition enter-to-class="etc" leave-to-class="ltc"/>
+=> .etc{}, .ltc{}...
+
+
+2. transition 컴포넌트는 하나의 루트 자식만 포함합니다.
+=> 커스텀 컴포넌트를 래핑할 떄에 루트 자식이 2개라면 동작하지 않습니다.
+
+=> 만약 dialog 태그에 transition 컴포넌트로 감싸져 있다면
+=> open props에 바로 부모의 boolean state값을 부여하는 것은 좋지 않습니다.
+=> open=true or open=false는 DOM에서 추가되거나 제거하는 과정이 아니라 즉시 표시되는 개념입니다.
+=> 그렇기에 v-if나 showModal(), close()를 사용하는 것이 적절합니다.
+
+
+3. transition 컴포넌트 예외 상황
+=> 감싸져 있는 컴포넌트가 하나의 루트 요소가 아닌 여러 개라도 예외적으로 transition 컴포넌트가 
+동작하는 상황이 있습니다.
+=> DOM을 기준으로 하나의 요소가 존재할 떄 입니다.
+=> 예를 들어, v-if를 통해 두 개의 요소 중 하나의 요소만 보일 경우입니다.
+
+
+4. transition 컴포넌트 내에서 State를 통해 DOM이 사라지고 나타날 떄
+ mode="out-in" props를 사용하면 dom이 사라지는 애니메이션이 완료되고
+ dom이 나타나는 애니메이션이 실행됩니다.
+
+
+

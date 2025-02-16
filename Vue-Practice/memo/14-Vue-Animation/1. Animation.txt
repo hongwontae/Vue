@@ -1,0 +1,38 @@
+1. CSS Animation
+=> CSS를 통해 애니메이션를 설정합니다.
+=> 컴포넌트가 DOM에서 사라질 떄 애니메이션을 구현할 수 없습니다.
+=> 그렇기에 Vue Animation이 필요합니다.
+
+
+2. Vue Animation-1
+=> <transition></transition> 컴포넌트를 통해 래핑된 요소의 애니메이션을 설정할 수 있습니다.
+=> transition 컴포넌트는 기본적으로 하나의 루트요소를 갖습니다.
+
+=> transition 컴포넌트는 래핑된 요소에 CSS 유틸리티 클래스를 추가합니다.
+=> enter-from, enter-active, enter-to
+=> enter-from : 초기 스타일/ enter-active : 중간 단계/ enter-to : 최종 상태
+
+=>leave-from, leave-active, leave-to
+=> leave-from : 요소가 사라지기 시작할 떄
+=> leave-active : 중간 단계
+=> leave-to : 요소가 사라지는 최종 상태 스타일
+
+=> Vue가 유틸리티 클래스를 분석하여 애니메이션을 실행합니다.
+=> transition 컴포넌트가 있을 떄 Vue는 애니메이션을 다 실행해야 요소를 언마운트합니다.
+
+
+3. Vue Animation-2
+=> style에서 정의할 떄는 .v-enter-from, .v-leave-active와 같이 정의합니다.
+=> 적어도 하나의 transition이 존재해야 각 클래스로부터 지속 시간을 읽어들일 수 있습니다.
+=> .v-enter-active {
+    transition : all 0.3s // 0.3s를 Vue가 인식합니다.
+}
+
+
+4. Vue Animation-3
+=> from, to을 사용하지 않고 active를 사용하여 정의할 수 있습니다.
+=> .v-enter-active {
+    transition : animationName 0.3s ease-out
+}
+=> @keyFrame으로 정의한 애니메이션이름을 transition에 추가하면 Vue에 의해 from, to까지 이어집니다.
+=> 또한 요소의 마운트, 언마운트에 따라 클래스 이름이 붙거나 사라짐으로 초기 상태를 정의할 필요가 없습니다.
