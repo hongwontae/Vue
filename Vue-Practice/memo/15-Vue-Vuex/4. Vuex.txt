@@ -1,0 +1,11 @@
+1. actions
+=> 비동기 코드를 처리하는 설정 메서드입니다.
+=> actions : {
+    increment(context, payload){ // context는 설정을 처리할 수 있는 객체입니다.
+        setTimeout(()=>{
+            context.commit('increment')
+        }, 2000)
+    }
+}
+
+=> $store.dispath를 통해 action에 접근할 수 있습니다.

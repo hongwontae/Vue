@@ -1,0 +1,30 @@
+1. getters
+=> Vuex에 저장된 값에 접근할 때 사용하는 프로퍼티입니다.
+
+=> vuex 설정 객체에 getters : {}로 정의합니다.
+=> getters : {
+    finalCounter(state){
+        return state.counter*3 // 이렇게 counter 값을 제어할 수 있습니다.
+    }
+}
+
+=> getters의 메서드들은 다른 메서드들 값에 의존할 수 있습니다.
+=> getters : {
+    finalCounter(state){
+        return state.counter*3
+    },
+    counter2(state, getters){
+        const stateValue = getters.finalCounter;
+        if(stateValue < 0){
+            return 0;
+        } 
+        if (stateValue > 100 ){
+            return 100;
+        }
+        return finalCounter;
+    }
+}
+
+=> 값에 접근할 떄는 this.$store.getters.finalCounter 처럼 프로퍼티처럼 접근합니다.
+=> mutation이 먼저 실행되고 getter가 이 값을 가공합니다.
+

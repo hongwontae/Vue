@@ -18,6 +18,11 @@ const store = createStore({
         increase(state, payload){
             state.counter +=payload.value
         }
+    },
+    getters : {
+        finalCounter(state){
+            return state.counter*3
+        }
     }
 })
 

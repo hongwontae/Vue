@@ -19,6 +19,7 @@
 
 3. mutations
 => 상태를 업데이트 하는 방법을 구조화하여 간접적으로 업데이트를 할 수 있습니다.
+=> 변형은 언제나 동기식입니다. 즉, 비동기 처리가 불가능합니다.
 => mutations : {
     increment(state){
         state.counte+=1;
