@@ -1,0 +1,44 @@
+1. Vuex Main Store
+=> import {createStore} from 'vuex'
+=> 저장소는 전체 애플리케이션 당 하나만 갖습니다.
+=> app.use(store)를 통해 저장소를 vue에 알립니다.
+=> const store = createStore({
+    state(){ // 애플리케이션의 상태를 정의하는 메서드입니다. 
+        return {
+            counter : 0
+        }
+    }
+})
+=> 위의 설정이 완료되면 컴포넌트에서 $store를 통해 접근할 수 있습니다.
+
+
+2. 기초적인 Update
+=> $store.state.counter+=1를 통해 업데이트를 수행할 수 있습니다.
+=> 이런 방식으로 중앙 저장소의 상태를 직접 변경하는 것은 Vuex 상태 업데이트 철학에 맞지 않습니다.
+
+
+3. mutations
+=> 상태를 업데이트 하는 방법을 구조화하여 간접적으로 업데이트를 할 수 있습니다.
+=> mutations : {
+    increment(state){
+        state.counte+=1;
+    }
+}
+=> this.$store.commit('mutations name 즉, increment')를 호출하면 변형이 호출됩니다.
+=> Vuex는 store.state를 반응형으로 관리하므로, 상태 변경이 일어나면 자동으로 업데이트 됩니다.
+
+=> mutations에서 정의한 메서드들은 payload를 받을 수 있습니다.
+=> increase(state, payload){
+    state.counter+=payload.value
+}
+=> addOne(){
+    this.$store.commit('increase', {value : 10})
+    or
+    this.$store.commit({
+        type : 'increase',
+        value : 10
+    }) => 이렇게 정의할 수 도 있습니다.
+}
+=> increase를 호출하면 counter는 10을 더하게 됩니다.
+
+
