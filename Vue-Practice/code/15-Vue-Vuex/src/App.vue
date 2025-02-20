@@ -1,7 +1,10 @@
 <template>
-  <base-container title="Vuex">
+  <base-container title="Vuex" v-if="isAuth">
     <the-counter></the-counter>
     <change-component></change-component>
+  </base-container>
+  <base-container title="Auth">
+    <user-auth></user-auth>
   </base-container>
 </template>
 
@@ -9,13 +12,20 @@
 import BaseContainer from './components/BaseContainer.vue';
 import TheCounter from './components/TheCounter.vue';
 import ChangeComponent from './components/ChangeComponent.vue';
+import UserAuth from './components/UserAuth.vue';
 
 export default {
   components: {
     BaseContainer,
     TheCounter,
-    ChangeComponent
-  }
+    ChangeComponent,
+    UserAuth
+  },
+  computed : {
+        isAuth(){
+            return this.$store.getters.userIsAuthenticated;
+        }
+    }
 };
 </script>
 
