@@ -1,20 +1,17 @@
 <template>
-    <button v-on:click="addOne">Add 1</button>
-    <button v-on:click="dynamicAdd">Add 10</button>
+    <button v-on:click="inc">Add 2</button>
+    <button v-on:click="incr({value : 10})">Add 11</button>
 </template>
 
 <script>
+import {mapActions} from 'vuex';
 export default {
     methods : {
-        addOne(){
-            this.$store.commit('increment');
-        },
-        dynamicAdd(){
-            this.$store.commit({
-                type : 'increase',
-                value : 10
-            })
-        }
+    //  ...mapActions(['increment', 'increase'])
+    ...mapActions({
+        inc : 'increment',
+        incr : 'increase'
+    })
     }
 }
 </script>
