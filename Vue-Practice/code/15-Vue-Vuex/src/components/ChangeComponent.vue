@@ -9,8 +9,8 @@ export default {
     methods : {
     //  ...mapActions(['increment', 'increase'])
     ...mapActions({
-        inc : 'increment',
-        incr : 'increase'
+        inc : 'numbers/increment',
+        incr : 'numbers/increase'
     })
     }
 }

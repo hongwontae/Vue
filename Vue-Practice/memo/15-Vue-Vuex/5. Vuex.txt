@@ -1,1 +1,27 @@
-1. 
+1. 모듈로 저장소 구성하기
+=> 하나의 저장소에 모든 상태 설정을 하지 않고 모듈화하는 방법입니다.
+=> 커스텀 설정 객체를 생성합니다. const settingCounter = {state(){}, getters:{}, actions:{}...}
+=> createStore({modules : {
+    key : 설정 객체 이름
+} }) => 이를 통해 전역 설정 객체를 깔끔하게 유지하고 전역 설정 객체에 다른 설정을 더 할 수 있습니다.
+
+
+2. 지역 모듈 상태
+=> 설정 객체의 state는 모듈 지역 상태입니다. 통합된 저장소 state에 접근할 수 없습니다.
+=> 즉, counterModule이 모듈 설정이라면 state가 전역 state에 접근할 수 없습니다.
+=> 또한 actions의 context.state도 지역 상태입니다.
+
+=> 문제점을 해결하기 위해 getters에서 세 번쨰, 네 번쨰 인자(rootState, rootGetters)를 받아서
+ 메인 상태, 메인 데터에 접근할 수 있습니다.
+
+
+3. Namespace Module
+=> 설정 객체의 actions의 메서드와 전역 저장소나 또 다른 설정 객체의 actions의 이름이 겹치는 경우 에러가 
+ 발생할 수 있습니다.
+=> 모듈에 네임스페이스를 이용해서 방지할 수 있습니다.
+
+=> 설정 객체에서 namespaced : true를 설정합니다.
+=> 사용할 컴포넌트에서 this.$store.getters['modules의key/getter이름']으로 사용합니다.
+=> mapGetters나 mapActions에서는 첫 번쨰 인수에 네임스페이스를 전달합니다.
+=> $store.dispatch({type : 'namespace/increase', value : 10})으로 호출합니다.
+
