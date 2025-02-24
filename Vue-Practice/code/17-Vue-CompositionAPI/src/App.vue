@@ -1,64 +1,35 @@
 <template>
   <section class="container">
-    <h2>{{ userName }}</h2>
-    <h2>{{ age }}</h2>
-    <button v-on:click="setUser">SetChange</button>
+    <user-data v-bind:username="username"></user-data>
     <div>
       <input type="text" placeholder="FirstName" v-on:input="nameHandler" />
       <input type="text" placeholder="LastName" v-on:input="ageHandler"/>
-      <input type="text" ref="inputRef" v-on:input="testHandler" />
     </div>
   </section>
 </template>
 
 <script>
-import {computed, reactive, ref, toRefs, watch} from 'vue';
+import {ref} from 'vue';
+import UserData from './components/UserData.vue';
 export default {
+
+  components : {
+    UserData
+  },
   setup(){
-      const user = reactive({
-        age : 28
-      })
-      const firstName = ref('')
-      const lastName = ref('')
-
-      const inputRef = ref('')
-      
-      function testHandler(){
-        console.log(inputRef.value.value)
-      }
-
-      function setUser(){
-        user.age = 222
-      }
-      const userName = computed(()=>{
-        return firstName.value + ' ' + lastName.value
-      })
+      const username = ref({firstName : '', lastName : ''});
 
       function nameHandler(e){
-        firstName.value = e.target.value;
+        username.value.firstName = e.target.value
       }
       function ageHandler(e){
-        lastName.value = e.target.value
+        username.value.lastName = e.target.value
       }
 
-      watch(user, (newValue)=>{
-        if(newValue.age == 222){
-          console.log(222 + 'true');
-        }
-      })
-
-      const upgradeUser = toRefs(user)
-
       return {
-        userName,
-        age : upgradeUser.age,
-        firstName,
-        lastName,
-        setUser,
         nameHandler,
         ageHandler,
-        inputRef,
-        testHandler
+        username
       }
 
   }
