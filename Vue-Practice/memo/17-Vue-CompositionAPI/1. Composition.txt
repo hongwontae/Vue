@@ -1,0 +1,23 @@
+1. options API
+=> Vue App을 구성할 떄 기본적으로 options API를 사용했습니다.
+=> methods, computed, data, watcher, props...
+
+=> options API의 단점
+=> 같이 있어야 하는 로직이 여러 가지 옵션에 나뉘어 있는 상황 (methods의 메서드를 computed에서 사용하고 data
+에서 가져오고 효율성과 가동성이 떨어지는 상황이 펼쳐집니다.)
+=> 재사용 로직을 만드는 데 어려움이 있을 수 있습니다.
+
+
+2. Composition API
+=> setup 메서드를 통해 로직을 번들어 만들어 컴포넌트 구성 객체에 추가하는 API입니다.
+=> 즉, data, mehods, computed, watch를 setup 메서드로 통합합니다.
+
+
+3. Setup-1 (ref)
+=> setup 안에서 ref를 호출하면 반응형으로 값을 생성합니다.
+(ref.value 자체가 반응형이고 이를 vue가 추적하는 것입니다.)
+=> 반응형으로 값이 생성되면 Vue가 변화를 감시하고 변화가 있을 떄 DOM을 업데이트합니다.
+=> 생성이 완료되면 컴포넌트에서 그냥 사용할 수 없습니다. setup(){}에서 return를 통해 내보내야 합니다.
+=> setup 메서드는 한 번만 실행됩니다.
+=> setup에서 ref.value는 ref('') 인자 값에 접근할 수 있습니다.
+=> 템플릿 내에서는 ref.value로 접근하지 않아도 값에 자동으로 접근합니다.

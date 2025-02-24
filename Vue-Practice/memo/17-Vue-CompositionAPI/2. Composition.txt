@@ -1,0 +1,37 @@
+1. 반응형 객체
+=> ref 함수로 ref를 생성하면 객체가 반환됩니다.
+=> 만약 ref 함수로 객체를 인자에 넣으면 ref.value는 프록시로 매핑됩니다.
+(내부 객체 변화도 파악할 수 있기 떄문입니다.)
+=> 만약 return 문에 {name : ref.value.name}으로 반환했다면 템플릿에서는 반응형이 아닙니다.
+(프록시 객체가 아닌 일반 프로퍼티이기 떄문입니다.)
+=> 템플릿에서 ref 객체를 반응형처럼 사용하려면 ref를 반환받는 변수를 그대로 return에 사용하고 user.name처럼
+사용해야 합니다.
+
+
+*** 자동 언래핑 ***
+=> ref 객체를 템플릿에서 사용할 때 .value를 명시적으로 작성하지 않아도 값을 사용할 수 있도록 해주는
+기능입니다.
+=> setup 내에서는 .value를 명시적으로 사용해야 합니다.
+
+
+2. reactive
+=> import {reactive} from 'vue';
+=> ref와 비슷하지만 객체용으로 만들어진 함수입니다.
+=> .value로 매핑하지 않고 그냥 프록시로 감쌉니다.
+
+3. 정리
+3-1. ref, reactive 객체를 직접 반환하면 템플릿에서 vue가 .value를 유지합니다. (반응형)
+3-2. ref에서 user.value.name이 아닌 user.name으로 반환해도 반응형이 유지가 됩니다.
+(reactive일 떄는 user.name으로 반환하면 템플릿에서 반응형이 유지가 안됩니다.)
+3-3. user.value를 직접 반환하면 ref가 풀려서 일반 객체가 됩니다.
+3-4. setup 내에서는 user.value에 접근해도 reactive가 유지되기 떄문에 변경을 감지할 수 있습니다.
+=> ref와 reactive의 주요 차이는 .value, .value로 값을 프록시로 감싼는가? 그냥 감싼는가의 차이입니다.
+
+
+4. 반응형 심층 분석
+=> import {isRef, isReactive} from 'vue';
+=> ref인지, reactive인지 Boolean으로 반환합니다.
+
+4-1 toRefs
+=> reative 객체를 모두 ref로 바꿀 수 있습니다.
+=> 이렇게 되면 기존에 user.name이 반응형이 꺠지는 것을 해결할 수 있습니다.

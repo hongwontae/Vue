@@ -1,0 +1,29 @@
+1. 비동기 컴포넌트
+=> import {defineAsyncComponent} from 'vue';
+=> ()=>import('path')
+=> 컴포넌트를 비동기적으로 로드할 수 있습니다.
+=> const BaseDialog = defineAsyncComponent(()=>{
+    import('../components/UI/BaseComponent.vue');
+})
+
+=> 로그인 시에 보이는 컴포넌트나 관리자 route 경우 비동기 컴포넌트가 유용할 수 있습니다.
+=> 이 떄는 defineAsyncComponent보다 {component : ()=>import('../UI/Dialog.vue')} 처럼 사용하는 것이 좋습니다.
+
+=> 비동기 컴포넌트가 렌더링되어야 할 떄 Vue 앱이 이를 판단하여 비동기적으로 컴포넌트를 가지고 옵니다.
+=> defineAsyncComponent는 특별한 로딩 UI, 특정 상황에서 사용하는 것이 좋습니다.
+
+
+2. defineAsyncComponent vs import()
+=> 둘 다 비동기 컴포넌트를 로드할 떄 사용됩니다.
+=> import는 SSR, CSR 가능하지만 defineAsyncComponent은 CSR에서만 가능합니다.
+=> defineAsyncComponent({
+  loader: () => import('@/components/HeavyComponent.vue'),
+  loadingComponent: () => import('@/components/Loading.vue'), // 로딩 UI
+  errorComponent: () => import('@/components/Error.vue'), // 에러 발생 시 UI
+  delay: 200, // 200ms 후 로딩 컴포넌트 표시
+  timeout: 5000 // 5초 동안 로드되지 않으면 에러 발생
+}) => 로딩 및 에러 상태를 쉽게 관리하거나 복잡한 설정할 떄 유용합니다.
+
+=> import() : Vue의 코드 스플리팅을 자동으로 수행하여 성능 최적하고 SSR에서도 동작이 가능합니다.
+
+=> defineAsyncComponent를 vue-router에서 사용하면 Vue Router의 내부 최적화 기능을 활용하지 못합니다.
