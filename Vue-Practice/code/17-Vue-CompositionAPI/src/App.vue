@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import {ref} from 'vue';
+import {ref, provide} from 'vue';
 import UserData from './components/UserData.vue';
 export default {
 
@@ -18,6 +18,7 @@ export default {
   },
   setup(){
       const username = ref({firstName : '', lastName : ''});
+      const userage = ref(0);
 
       function nameHandler(e){
         username.value.firstName = e.target.value
@@ -26,10 +27,12 @@ export default {
         username.value.lastName = e.target.value
       }
 
+      provide('userAge', userage);
+
       return {
         nameHandler,
         ageHandler,
-        username
+        username,
       }
 
   }
