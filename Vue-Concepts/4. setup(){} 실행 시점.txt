@@ -1,0 +1,6 @@
+1️⃣ beforeCreate() (Options API에서만 존재)
+2️⃣ setup() 실행
+3️⃣ reactive 상태 생성 (ref(), reactive())
+4️⃣ 템플릿 렌더링 (DOM 생성 전)
+5️⃣ onBeforeMount() 실행 → DOM이 생성되기 직전
+6️⃣ onMounted() 실행 → DOM 생성 완료 후

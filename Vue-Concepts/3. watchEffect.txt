@@ -1,0 +1,13 @@
+1. watchEffect()
+=> 반응형 상태를 자동으로 추적하고 변경될 떄마다 실행되는 함수입니다.
+=> watchEffect(()=>{
+    console.log(count.value)
+})
+=> watchEffect 콜백 함수에서 사용된 반응형을 자동으로 감지해서 해당 값이 바뀔 때마다 실행합니다.
+=> watchEffect는 처음에 즉시 실행하고, watch는 즉시 실행하지 않습니다.
+
+=> 이전 작업을 정리해야 할 경우 watchEffect 콜백함수 내에서
+ onCleanup(()=>{
+    clearInterval(timer)
+    ...
+})를 사용합니다.

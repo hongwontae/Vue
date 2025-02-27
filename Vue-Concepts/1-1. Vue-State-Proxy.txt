@@ -1,0 +1,51 @@
+1. Vue3는 Proxy 객체를 사용하여 상태를 감지하고 변경을 추적합니다.
+
+
+2. Proxy란?
+=> JS의 Proxy 객체는 기본 객체를 감싸서 객체에 대한 모든 접근을 가로채어 동작합니다.
+=> 객체를 읽을 떄, 쓸 떄, 삭제할 떄.. 등의 동작을 가로채서 원하는 로직을 추가할 수 있습니다.
+
+=> const target = {count : 1, name : 'hwt'};
+=> const proxy = new Proxy(target, {
+    get(object, prop){
+        // dot으로 접근하면 get이 호출됩니다.
+        // object는 target, prop은 dot으로 접근한 프로퍼티입니다.
+        // return된 값이 반환됩니다.
+        console.log(object, prop) 
+        return obj[prop]
+    },
+    set(object, prop, value){
+        // value는 값을 할당할 떄 값을 의미합니다.
+        // return true를 반환해야 set 동작이 성공합니다.
+        obj[prop] = value
+        return true
+    }
+}) 
+console.log(proxy.count) // proxy get 동작
+proxy.count = 10 // proxy set 동작
+=> new Proxy()를 통해 객체를 할당합니다. 첫 번쨰 인자로는 감쌀 객체, 두 번쨰 인자로는 가로챌 로직을 설정합니다.
+
+
+3. Vue의 reactive()는 Proxy를 활용합니다.
+=> vue의 reactive({..})는 proxy로 변환됩니다.
+=> reactive는 인자로 객체만 받습니다.
+
+
+4. Vue reactive proxy 예시
+function reactive(target){
+    return new Proxy(target, {
+        get(){
+            return object[prop]
+        },
+        set(){
+            return true
+        }
+    })
+}
+
+
+5. Vue의 반응형 업데이트 과정
+5-1. Vue는 Proxy를 통해 의존성 추적과 렌더링 최적화를 수행합니다.
+5-2. 컴포넌트가 반응형.prop를 읽으면 get이 실행됩니다. (의존성 수집)
+5-3. 반응형.prop = 1이 실행되면 set이 실행됩니다. (변경된 속성을 감지하여 관련된 컴포넌트만 다시 렌더링합니다.)
+
