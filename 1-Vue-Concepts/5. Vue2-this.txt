@@ -1,0 +1,9 @@
+1. Vue2에서 컴포넌트를 정의할 때, 컴포넌트는 Vue 인스턴스로 생성되며,
+ 해당 인스턴스는 data, methods, computed, watch등 모든 속성을 포함합니다.
+
+
+2. 즉, Idea 컴포넌트가 존재하고 options API를 설정했을 떄, 해당 컴포넌트는 Vue의 인스턴스입니다.
+=> 해당 인스턴스에 options API에서 설정한 속성을 보유하고 있습니다.
+=> const component = new Vue({
+    ...optionsAPI
+})
